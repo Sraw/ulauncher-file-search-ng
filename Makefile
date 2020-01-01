@@ -1,5 +1,5 @@
 
-EXT_NAME:=com.github.bpaz.ulauncher-file-search
+EXT_NAME:=com.github.sraw.ulauncher-file-search
 
 EXT_DIR:=$(shell pwd)
 

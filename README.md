@@ -1,3 +1,5 @@
+## This is a fork of original [project](https://github.com/brpaz/ulauncher-file-search), for my personal usage.
+
 # ulauncher-file-search
 
 [![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg?style=for-the-badge)](https://ext.ulauncher.io/-/github-brpaz-ulauncher-file-search)
@@ -20,7 +22,7 @@
 Open ulauncher preferences window -> extensions -> add extension and paste the following url:
 
 ```
-https://github.com/brpaz/ulauncher-file-search
+https://github.com/Sraw/ulauncher-file-search
 ```
 
 ## Usage

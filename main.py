@@ -38,10 +38,12 @@ class FileSearchExtension(Extension):
 
     def search(self, query, file_type=None):
         """ Searches for Files using fd command """
-        cmd = [
-            'timeout', '5s', 'ionice', '-c', '3', 'fd', '--threads', '1',
-            '--hidden'
-        ]
+        base_dir = self.preferences['base_dir']
+        timeout = self.preferences['timeout']
+        threads = self.preferences['threads']
+        fd_command = self.preferences['fd_cmd']
+
+        cmd = ["timeout", timeout, "ionice", "-c", "3", fd_command, "--hidden"]
 
         if file_type == FILE_SEARCH_FILE:
             cmd.append('-t')
@@ -50,8 +52,12 @@ class FileSearchExtension(Extension):
             cmd.append('-t')
             cmd.append('d')
 
+        if threads != "0":
+            cmd.append("--threads")
+            cmd.append(threads)
+
         cmd.append(query)
-        cmd.append(self.preferences['base_dir'])
+        cmd.append(base_dir)
 
         process = subprocess.Popen(cmd,
                                    stdout=subprocess.PIPE,
