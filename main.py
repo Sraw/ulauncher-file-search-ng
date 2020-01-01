@@ -37,13 +37,13 @@ class FileSearchExtension(Extension):
         super(FileSearchExtension, self).__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
 
-    def search(self, query, file_type=None, fd_command="fd"):
+    def search(self, query, file_type=None, fd_cmd="fd"):
         """ Searches for Files using fd command """
         base_dir = self.preferences["base_dir"]
         timeout = self.preferences["timeout"]
         threads = self.preferences["threads"]
 
-        cmd = ["timeout", timeout, "ionice", "-c", "3", fd_command, "--hidden"]
+        cmd = ["timeout", timeout, "ionice", "-c", "3", fd_cmd, "--hidden"]
 
         if file_type == FILE_SEARCH_FILE:
             cmd.append("-t")
@@ -125,11 +125,11 @@ class KeywordQueryEventListener(EventListener):
     # pylint: disable=unused-argument,no-self-use
     def on_event(self, event, extension):
         """ Handles the event """
-        fd_command = extension.preferences["fd_command"]
-        if shutil.which(fd_command) is None:
+        fd_cmd = extension.preferences["fd_cmd"]
+        if shutil.which(fd_cmd) is None:
             return RenderResultListAction([
                 ExtensionResultItem(icon="images/icon.png",
-                                    name=f"Command {fd_command} is not found, please install it first",
+                                    name=f"Command {fd_cmd} is not found, please install it first",
                                     on_enter=HideWindowAction())
             ])
 
@@ -156,7 +156,7 @@ class KeywordQueryEventListener(EventListener):
         elif keyword_id == "fd_kw":
             file_type = FILE_SEARCH_DIRECTORY
 
-        results = extension.search(query.strip(), file_type)
+        results = extension.search(query.strip(), file_type, fd_cmd)
 
         if not results:
             return RenderResultListAction([
