@@ -1,9 +1,13 @@
 ## This is a fork of original [project](https://github.com/brpaz/ulauncher-file-search), for my personal usage.
 
+The reason why I maintain it as a separated project instead of submit a PR is that I cannot wait for the merging.
+
+This fork is not listed in Ulauncher's extensions website.
+
 # ulauncher-file-search
 
 [![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg?style=for-the-badge)](https://ext.ulauncher.io/-/github-brpaz-ulauncher-file-search)
-[![GitHub license](https://img.shields.io/github/license/brpaz/file-search.svg?style=for-the-badge)](https://github.com/brpaz/ulauncher-file-search/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/sraw/ulauncher-file-search.svg?style=for-the-badge)](https://github.com/sraw/ulauncher-file-search/blob/master/LICENSE)
 
 > Quick Search files and directories from [Ulauncher](https://ulauncher.io) using [https://github.com/sharkdp/fd](fd).
 
@@ -15,7 +19,7 @@
 
 - Ulauncher 5+
 - Python 3+
-- [fd](https://github.com/sharkdp/fd) - A simple, fast and user-friendly alternative to 'find'.
+- [fd](https://github.com/sharkdp/fd) - A simple, fast and user-friendly alternative to 'find'. Notice you need to install it.
 
 ## Install
 
@@ -33,7 +37,8 @@ This extension provides the following keywords:
 - ff -> Search Files
 - fdir -> Search directories
 
-To search, input one of the previous keywords to trigger the extension and start typing your search criteria. Ulauncher will call "fd" under the hood to perform your search and it will display a list of results.
+To search, input one of the previous keywords to trigger the extension and start typing your search criteria. 
+Ulauncher will call "fd" under the hood to perform your search and it will display a list of results.
 
 ### Result items Actions
 
@@ -42,42 +47,15 @@ To search, input one of the previous keywords to trigger the extension and start
 
 ### Extension settings
 
-- **Terminal Emulator** -> Sets the terminal emulator to use when opening directories.
-- **Base dir** -> The base directory to start your searches. By detault, its the root folder "/" but you can set to your home directory, for example. Note, that only absolute paths are supported.
-## Development
-
-```
-git clone https://github.com/brpaz/ulauncher-file-search
-make link
-```
-
-The `make link` command will symlink the cloned repo into the appropriate location on the ulauncher extensions folder.
-
-Make sure Ulauncher is not running and from command line run:
-
-```sh
-ulauncher --no-extensions --dev -v |& grep "file-search"
-```
-
-This will start ulauncher with all the extensions disable which will make it easier to look for logs.
-
-You then have to start the Circle CI extension manually. In the output of the previous command you should find something similar to this:
-
-```sh
-VERBOSE=1 ULAUNCHER_WS_API=ws://127.0.0.1:5054/file-search PYTHONPATH=/usr/lib/python3/dist-packages /usr/bin/python3 /home/bruno/.cache/ulauncher_cache/extensions/file-search/main.py
-``` 
-
-Copy and run that command in another terminal window.
-
-Your extension should now be running. To see your changes, just Ctrl+C and re-run the last command.
+- **Terminal Emulator** -> Sets the terminal emulator to use when opening directories. Default: `gnome-terminal`
+- **Base dir** -> The base directory to start your searches as an absolute path. Default: `/`
+- **fd command** -> Specify the command of the fd tool. Mostly it should be fd. Default: `fd`
+- **Timeout of search** -> Specify a timeout in second for the search action. Default: `5`
+- **Threads limitation** -> Specify how many threads to use for the search action. 0 means the same as cores. Default: `0`
 
 ## Contributing
 
-All contributions are welcome. Just open an issue and/or create a PR.
-
-If you like my work, feel free to "Buy me a Coffee".
-
-<a href="https://www.buymeacoffee.com/Z1Bu6asGV" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+Please go to the original [project](https://github.com/brpaz/ulauncher-file-search).
 
 ## Links
 
@@ -87,3 +65,5 @@ If you like my work, feel free to "Buy me a Coffee".
 ## License
 
 MIT &copy; [Bruno Paz](http://brunopaz.net)
+
+MIT &copy; Sraw
